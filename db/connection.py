@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DB_URL = "sqlite:///./sql_app.db"
+SQLALCHEMY_DB_URL = "mysql://127.0.0.1:3306/soundlight?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
 
 engine = create_engine(
     SQLALCHEMY_DB_URL,
