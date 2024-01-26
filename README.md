@@ -17,8 +17,5 @@ Ensure you have docker in your local
 ```bash
   cd fastapi-crud-mvc
   docker build . -t mvp/sound-light:latest
-  docker run -p 8000:8000 mvp/sound-light:latest
+  docker run -p 8080:8080 mvp/sound-light:latest
 ```
-
-
-testing
