@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from routers import users, posts
 
 app = app = FastAPI(
-    title="boilerplate api",
+    title="soundlight api",
     description="This is a sample FastAPI application with Swagger documentation.",
     version="1.0.0",
     openapi_url="/openapi.json",  # JSON 형식의 API 스키마
