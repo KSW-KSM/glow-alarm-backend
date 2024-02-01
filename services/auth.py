@@ -27,17 +27,17 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encode_jwt
 
 
-def get_current_user(token: str = Depends(oauth_schema), db: Session = Depends(get_db)):
-    try:
-        payload = jwt.decode(token, Config.SECRET_KEY, algorithms=[Config.ALGORITHM])
-        username: str = payload.get("sub")
+# def get_current_user(token: str = Depends(oauth_schema), db: Session = Depends(get_db)):
+#     try:
+#         payload = jwt.decode(token, Config.SECRET_KEY, algorithms=[Config.ALGORITHM])
+#         username: str = payload.get("sub")
 
-        if username is None:
-            return raise_exception("Credentials Invalid!", status_code=401)
-    except JWTError:
-        return raise_exception("Credentials Invalid!", status_code=401)
+#         if username is None:
+#             return raise_exception("Credentials Invalid!", status_code=401)
+#     except JWTError:
+#         return raise_exception("Credentials Invalid!", status_code=401)
 
-    um = UsersModel()
-    um.email = username
-    user = get_user_service(um, db)
-    return user
+#     um = UsersModel()
+#     um.email = username
+#     user = get_user_service(um, db)
+#     return user
