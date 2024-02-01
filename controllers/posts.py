@@ -1,10 +1,10 @@
-from sqlalchemy.orm import Session
-from schema.posts import PostsSchema
-from models.posts import PostsModel
-from models.users import UsersModel
-from utils.error import raise_exception
+# from sqlalchemy.orm import Session
+# from schema.posts import PostsSchema
+# from models.posts import PostsModel
+# from models.users import UsersModel
+# from utils.error import raise_exception
 
-from services.posts import create_edit_post_service, get_posts_service, get_posts_detail_service, delete_post_service
+# from services.posts import create_edit_post_service, get_posts_service, get_posts_detail_service, delete_post_service
 
 
 # def create_post(post: PostsSchema, db: Session, user: UsersModel):

@@ -1,10 +1,10 @@
-from sqlalchemy.orm import Session
-from fastapi.security.oauth2 import OAuth2PasswordRequestForm
-from models.users import UsersModel
-from schema.users import RegisterUserSchema
-from utils.password import Hash
-from utils.error import raise_exception
-from services import users as users_service, auth as auth_service
+# from sqlalchemy.orm import Session
+# from fastapi.security.oauth2 import OAuth2PasswordRequestForm
+# from models.users import UsersModel
+# from schema.users import RegisterUserSchema
+# from utils.password import Hash
+# from utils.error import raise_exception
+# from services import users as users_service, auth as auth_service
 
 
 # def create_user(user: RegisterUserSchema, db: Session):
