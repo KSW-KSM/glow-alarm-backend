@@ -13,5 +13,5 @@ app = app = FastAPI(
 # Initialize table
 # init_table()
 
-app.include_router(users.router)
-app.include_router(posts.router)
+# app.include_router(users.router)
+# app.include_router(posts.router)
