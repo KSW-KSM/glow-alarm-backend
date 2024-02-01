@@ -1,26 +1,26 @@
-from pydantic import BaseModel
+# from pydantic import BaseModel
 
 
-class UserPost(BaseModel):
-    username: str
-    email: str
+# class UserPost(BaseModel):
+#     username: str
+#     email: str
 
-    class Config:
-        orm_mode = True
-
-
-class PostsSchema(BaseModel):
-    title: str
-    body: str
-    rating: int
+#     class Config:
+#         orm_mode = True
 
 
-class PostsDisplaySchema(BaseModel):
-    id: int
-    title: str
-    body: str
-    rating: int
-    user: UserPost
+# class PostsSchema(BaseModel):
+#     title: str
+#     body: str
+#     rating: int
 
-    class Config:
-        orm_mode = True
+
+# class PostsDisplaySchema(BaseModel):
+#     id: int
+#     title: str
+#     body: str
+#     rating: int
+#     user: UserPost
+
+#     class Config:
+#         orm_mode = True
