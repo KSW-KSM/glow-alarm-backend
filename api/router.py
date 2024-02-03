@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-
+from api.routes import test_item
 
 api_router = APIRouter()
 
-
+api_router.include_router(test_item.router, tags=["test_item"])
 # api_router.include_router(system_config.router, tags=["시스템 환경 설정"])
 # api_router.include_router(travel_share_info.router, tags=["여행 일정 공유 관리"])
 # api_router.include_router(travel_default_info.router, tags=["여행 기본 정보 관리"])
