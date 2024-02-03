@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from api.router import api_router
 from core.config import settings
 from starlette.middleware.cors import CORSMiddleware
+from sqlalchemy import text
+from api.depends.get_db import get_db
 import asyncio
 import logging
 
