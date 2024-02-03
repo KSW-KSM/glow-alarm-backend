@@ -9,8 +9,8 @@ import logging
 from routers import users, posts
 
 app = app = FastAPI(
-    title=settings.PROJECT_NAME
-    description=settings.DESCRIPTION
+    title=settings.PROJECT_NAME,
+    description=settings.DESCRIPTION,
     version=settings.API_VERSION
 )
 
