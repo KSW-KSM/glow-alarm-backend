@@ -12,8 +12,6 @@ from logging_config import LOGGING_CONFIG
 import asyncio
 import logging
 
-# from models.create_table import init_table
-from routers import users, posts
 
 app = app = FastAPI(
     title=settings.PROJECT_NAME,
