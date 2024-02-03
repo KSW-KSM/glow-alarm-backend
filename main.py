@@ -1,14 +1,56 @@
 from fastapi import FastAPI
+from api.router import api_router
+from core.config import settings
+from starlette.middleware.cors import CORSMiddleware
+import asyncio
+import logging
 
 # from models.create_table import init_table
 from routers import users, posts
 
 app = app = FastAPI(
-    title="soundlight api",
-    description="This is a sample FastAPI application with Swagger documentation.",
-    version="1.0.0",
-    openapi_url="/openapi.json",  # JSON 형식의 API 스키마
+    title=settings.PROJECT_NAME
+    description=settings.DESCRIPTION
+    version=settings.API_VERSION
 )
+
+app.include_router(api_router)
+
+
+
+#### add CORS middleware ####
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+
+#### checking db connection ####
+def check_db_connection(db=None):
+    if not db:
+        gen = get_db()
+        db = next(gen)
+        try:
+            db.execute(text("SELECT 1"))
+        finally:
+            next(gen, None)
+    else:
+        db.execute(text("SELECT 1"))
+
+
+async def startup_db_check():
+    loop = asyncio.get_event_loop()
+    await loop.run_in_executor(None, check_db_connection)
+
+
+@app.on_event("startup")
+async def on_startup():
+    logging.info("Trying DB connection before stating...")
+    await startup_db_check()
+    logging.info(f"DB connected! (url: {settings.DATABASE_URL})")
 
 # Initialize table
 # init_table()
