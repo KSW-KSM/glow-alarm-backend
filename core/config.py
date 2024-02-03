@@ -1,5 +1,7 @@
 from typing import Any, Dict, List, Optional, Union
-from pydantic import AnyHttpUrl, BaseSettings, validator
+from pydantic_settings.BaseSettings import BaseSettings
+
+from pydantic import AnyHttpUrl, validator
 from sqlalchemy.engine import create_engine
 
 
