@@ -81,9 +81,3 @@ async def on_startup():
     logging.info("Trying DB connection before stating...")
     await startup_db_check()
     logging.info(f"DB connected! (url: {settings.DATABASE_URL})")
-
-# Initialize table
-# init_table()
-
-# app.include_router(users.router)
-# app.include_router(posts.router)
