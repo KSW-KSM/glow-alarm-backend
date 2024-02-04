@@ -13,4 +13,3 @@ api_router.include_router(test_item.router, tags=["test_item"])
 # api_router.include_router(travel_review_info.router, tags=["여행 리뷰 관리"])
 # api_router.include_router(travel_review_file_info.router, tags=["travel_review_file_info"])
 # api_router.include_router(log_manage.router, tags=["로그 관리"])
-
