@@ -1,6 +1,7 @@
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.orm import relationship
 
 class User(Base, TimeStampedModel):
     __tablename__ = "test_item"
@@ -12,3 +13,5 @@ class User(Base, TimeStampedModel):
     bulb_connection = Column(Boolean, nullable=False, default=False)
     bulb_ip = Column(String(20))
     value = Column(Integer)
+
+    alarms = relationship("Alarm", back_populates="user")
