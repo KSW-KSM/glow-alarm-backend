@@ -8,6 +8,8 @@ venv/
 # C extensions
 *.so
 
+bin/
+
 # Distribution / packaging
 .Python
 build/
