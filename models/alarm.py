@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from datetime import datetime
 from enum import Enum
 
-class WeekdayEnum(Enum):
+class WeekdayEnum(str, Enum):
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
     WEDNESDAY = "Wednesday"
@@ -13,7 +13,8 @@ class WeekdayEnum(Enum):
     FRIDAY = "Friday"
     SATURDAY = "Saturday"
     SUNDAY = "Sunday"
-class LightColor(Enum):
+
+class LightColor(str, Enum):
     RED = "Red"
 
 class Alarm(Base, TimeStampedModel):
