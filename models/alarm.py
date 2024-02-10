@@ -3,7 +3,6 @@ from models.columns.timestamp import TimeStampedModel
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from enum import Enum
 
 class WeekdayEnum(str, Enum):
     MONDAY = "Monday"
@@ -25,6 +24,5 @@ class Alarm(Base, TimeStampedModel):
     repeat_day = Column(Enum(WeekdayEnum))
     light_color= Column(Enum(LightColor),  default = LightColor.RED)
     alarm_status = Column(Column(Boolean,  default=False))
-
     user_id = Column(String(20), ForeignKey('user.id'))
     user = relationship("User", back_populates="alarms")
