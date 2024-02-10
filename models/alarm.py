@@ -21,8 +21,8 @@ class Alarm(Base, TimeStampedModel):
 
     id = Column(String(20), primary_key=True, index=True)
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
-    repeat_day = Column(Enum(WeekdayEnum, create_constraint=False), nullable=True)
-    light_color= Column(Enum(LightColor, create_constraint=False), nullable = False, default = LightColor.RED)
+    repeat_day = Column(Enum(WeekdayEnum, nullable=True))
+    light_color= Column(Enum(LightColor), nullable = False, default = LightColor.RED)
     alarm_status = Column(Column(Boolean, nullable=False, default=False))
 
     user_id = Column(String(20), ForeignKey('user.id'))
