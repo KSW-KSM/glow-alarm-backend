@@ -7,7 +7,8 @@ from datetime import datetime
 class CRUDAlarm:
     @staticmethod
     def insert(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
-        alarm = Alarm(id=id, alarm_time=alarm_time, repeat_day=repeat_day, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+        repeat_day_str = ','.join(repeat_day)
+        alarm = Alarm(id=id, alarm_time=alarm_time, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
         try:
             db.add(alarm)
             db.commit()
@@ -31,11 +32,11 @@ class CRUDAlarm:
 
     @staticmethod
     def update(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
-        # Update the alarm
+        repeat_day_str = ','.join(repeat_day)
         updated_alarm = db.get(Alarm, id)
         if updated_alarm:
             updated_at = datetime.now()
-            db.query(Alarm).filter(Alarm.id == id).update({"alarm_time": alarm_time, "repeat_day": repeat_day, "light_color": light_color, "alarm_status": alarm_status, "user_id": user_id, "updated_at": updated_at})
+            db.query(Alarm).filter(Alarm.id == id).update({"alarm_time": alarm_time, "repeat_day": repeat_day_str, "light_color": light_color, "alarm_status": alarm_status, "user_id": user_id, "updated_at": updated_at})
             db.commit()
             db.refresh(updated_alarm)
 
