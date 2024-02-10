@@ -21,7 +21,7 @@ class Alarm(Base, TimeStampedModel):
 
     id = Column(String(20), primary_key=True, index=True)
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
-    repeat_day = Column(Enum(WeekdayEnum, nullable=True))
+    repeat_day = Column(Enum(WeekdayEnum))
     light_color= Column(Enum(LightColor),  default = LightColor.RED)
     alarm_status = Column(Column(Boolean,  default=False))
 
