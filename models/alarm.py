@@ -1,10 +1,11 @@
+import enum
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
-class WeekdayEnum(str, Enum):
+class WeekdayEnum(str, enum.Enum):
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
     WEDNESDAY = "Wednesday"
@@ -13,7 +14,7 @@ class WeekdayEnum(str, Enum):
     SATURDAY = "Saturday"
     SUNDAY = "Sunday"
 
-class LightColor(str, Enum):
+class LightColor(str, enum.Enum):
     RED = "Red"
 
 class Alarm(Base, TimeStampedModel):
