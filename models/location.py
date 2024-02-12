@@ -1,6 +1,6 @@
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
-from sqlalchemy import Column, Integer, Long,String, Boolean, DateTime
+from sqlalchemy import Column, Long, String
 from sqlalchemy.orm import relationship
 
 class Location(Base, TimeStampedModel):
