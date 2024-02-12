@@ -12,6 +12,5 @@ class User(Base, TimeStampedModel):
     guardian_contact = Column(String(20), nullable=False)
     bulb_connection = Column(Boolean, nullable=False, default=False)
     bulb_ip = Column(String(20))
-    value = Column(Integer)
 
     alarms = relationship("Alarm", back_populates="user")
