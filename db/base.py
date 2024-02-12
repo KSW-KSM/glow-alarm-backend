@@ -14,7 +14,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 from models.test_item import TestItem
-
+from models.alarm import Alarm
+from models.user import User
 
 
 Base.metadata.create_all(bind=engine)
