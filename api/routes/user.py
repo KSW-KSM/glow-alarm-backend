@@ -13,7 +13,7 @@ router = APIRouter()
 @router.post("/user", response_model=UserInDB)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     try:
-        created_user = crud_user.insert(db=db, id=user.id, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_ip=user.bulb_ip, value=user.value)
+        created_user = crud_user.insert(db=db, id=user.id, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_ip=user.bulb_ip)
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"User creation failed: {str(e)}")
 
@@ -38,7 +38,7 @@ def read_users(db: Session = Depends(get_db)):
 def update_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db),
                  user: UserUpdate = Body(...)):
     try:
-        updated_user = crud_user.update(db=db, id=id, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_connection=user.bulb_connection, bulb_ip=user.bulb_ip, value=user.value)
+        updated_user = crud_user.update(db=db, id=id, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_connection=user.bulb_connection, bulb_ip=user.bulb_ip)
     except:
         raise HTTPException(status_code=422, detail="Validation error")
     if not updated_user:

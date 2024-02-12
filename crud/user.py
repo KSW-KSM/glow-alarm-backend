@@ -7,8 +7,8 @@ from datetime import datetime
 
 class CRUDUser:
     @staticmethod
-    def insert(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, value: int):
-        user = User(id=id, user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, value=value)
+    def insert(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str):
+        user = User(id=id, user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip)
         try:
             db.add(user)
             db.commit()
@@ -27,12 +27,12 @@ class CRUDUser:
         return db.query(User).all()
 
     @staticmethod
-    def update(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str, value: int):
+    def update(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
         # Update the user
         updated_user = db.get(User, id)
         if updated_user:
             updated_at = datetime.now()
-            db.query(User).filter(User.id == id).update({"user_name": user_name, "google_id": google_id, "guardian_contact": guardian_contact, "bulb_connection": bulb_connection, "bulb_ip": bulb_ip, "value": value, "updated_at": updated_at})
+            db.query(User).filter(User.id == id).update({"user_name": user_name, "google_id": google_id, "guardian_contact": guardian_contact, "bulb_connection": bulb_connection, "bulb_ip": bulb_ip, "updated_at": updated_at})
             db.commit()
             db.refresh(updated_user)
 
