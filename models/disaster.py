@@ -1,7 +1,7 @@
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
 from datetime import datetime
-from sqlalchemy import Long, Column, String, DateTime ,ForeignKey
+from sqlalchemy import Column, String, DateTime ,ForeignKey
 from sqlalchemy.orm import relationship
 import uuid
 
