@@ -14,6 +14,7 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(UserBase):
+    bulb_connection: bool
     pass
 
 
