@@ -2,13 +2,25 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from models.alarm import Alarm
 from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime
+from pytz import utc
 
+scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
     @staticmethod
-    def insert(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
+    def insert(db: Session, *, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
         repeat_day_str = ','.join(repeat_day)
-        alarm = Alarm(id=id, alarm_time=alarm_time, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+        alarm = Alarm(alarm_time=alarm_time, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+        # scheduler.add_job(
+        #     전구 켜는 함수,
+        #     'date',
+        #     run_date=alarm.alarm_time,
+        #     args=[alarm.user_id, f"Alarm: {alarm.id}"]
+        # )
+        # # APScheduler 시작
+        # scheduler.start()
         try:
             db.add(alarm)
             db.commit()
@@ -49,6 +61,7 @@ class CRUDAlarm:
             db.delete(deleted_alarm)
             db.commit()
         return deleted_alarm
+
 
 
 # 싱글톤 객체 생성

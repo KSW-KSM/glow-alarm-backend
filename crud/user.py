@@ -7,8 +7,8 @@ from datetime import datetime
 
 class CRUDUser:
     @staticmethod
-    def insert(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str):
-        user = User(id=id, user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip)
+    def insert(db: Session, *,user_name: str, google_id: str, guardian_contact: str, bulb_ip: str):
+        user = User(user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip)
         try:
             db.add(user)
             db.commit()

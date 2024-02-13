@@ -16,6 +16,7 @@ Base = declarative_base()
 from models.test_item import TestItem
 from models.alarm import Alarm
 from models.user import User
+# from models.disaster import Disaster
 
 
 Base.metadata.create_all(bind=engine)
