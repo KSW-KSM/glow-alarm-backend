@@ -16,6 +16,9 @@ class UserUpdate(UserBase):
     bulb_connection: bool
     pass
 
+class UserResponse(UserBase):
+    id: str
+    pass
 
 class UserInDB(UserBase):
     class Config:

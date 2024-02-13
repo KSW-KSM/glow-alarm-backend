@@ -6,11 +6,11 @@ from typing import List
 from sqlalchemy.orm import Session
 from api.depends.get_db import get_db
 from crud.user import crud_user
-from schemas.user import UserCreate, UserUpdate, UserInDB
+from schemas.user import UserCreate, UserUpdate, UserInDB, UserResponse
 
 router = APIRouter()
 
-@router.post("/user", response_model=UserInDB)
+@router.post("/user", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     try:
         created_user = crud_user.insert(db=db, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_ip=user.bulb_ip)
@@ -19,7 +19,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return JSONResponse(status_code=201, content=jsonable_encoder(created_user))
 
-@router.get("/user/{id}", response_model=UserInDB)
+@router.get("/user/{id}", response_model=UserResponse)
 def read_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     try:
         user = crud_user.get(db, id)
@@ -29,12 +29,12 @@ def read_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return JSONResponse(status_code=200, content=jsonable_encoder(user))
 
-@router.get("/users", response_model=List[UserInDB])
+@router.get("/users", response_model=List[UserResponse])
 def read_users(db: Session = Depends(get_db)):
     users = crud_user.get_all(db)
     return JSONResponse(status_code=200, content=jsonable_encoder(users))
 
-@router.put("/user/{id}", response_model=UserInDB)
+@router.put("/user/{id}", response_model=UserResponse)
 def update_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db),
                  user: UserUpdate = Body(...)):
     try:
