@@ -1,22 +1,24 @@
-# from pydantic import BaseModel
-# from typing import Optional, List
-# from datetime import datetime
+from pydantic import BaseModel
+from typing import Optional, List
+from datetime import datetime
 
-# class DisasterBase(BaseModel):
-#     disaster_time: datetime
-#     disaster_level: str
-#     disaster_message: str
-#     location_id: str
+class DisasterBase(BaseModel):
 
-# class DisasterCreate(DisasterBase):
-#     pass
+    id: str
+    disaster_time: datetime
+    disaster_level: str
+    disaster_message: str
+    location_id: str
 
-
-# class DisasterUpdate(DisasterBase):
-#     pass
+class DisasterCreate(DisasterBase):
+    pass
 
 
-# class DisasterInDB(DisasterBase):
-#     class Config:
-#         orm_mode = True
+class DisasterUpdate(DisasterBase):
+    pass
+
+
+class DisasterInDB(DisasterBase):
+    class Config:
+        orm_mode = True
 
