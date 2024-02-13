@@ -4,7 +4,6 @@ from datetime import datetime
 
 class LocationBase(BaseModel):
     
-    id: str
     location_code: str
     location_name: str
 
@@ -16,6 +15,9 @@ class LocationCreate(LocationBase):
 class LocationUpdate(LocationBase):
     pass
 
+class LocationResponse(LocationBase):
+    id: str
+    pass
 
 class LocationInDB(LocationBase):
     class Config:
