@@ -13,7 +13,7 @@ router = APIRouter()
 @router.post("/user", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     try:
-        created_user = crud_user.insert(db=db, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_ip=user.bulb_ip)
+        created_user = crud_user.insert(db=db, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_ip=user.bulb_ip, location_id=user.location_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"User creation failed: {str(e)}")
 
