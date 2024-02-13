@@ -17,6 +17,9 @@ class DisasterCreate(DisasterBase):
 class DisasterUpdate(DisasterBase):
     pass
 
+class DisasterResponse(DisasterBase):
+    id: str
+    pass
 
 class DisasterInDB(DisasterBase):
     class Config:
