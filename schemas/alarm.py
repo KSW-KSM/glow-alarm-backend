@@ -17,6 +17,9 @@ class AlarmCreate(AlarmBase):
 class AlarmUpdate(AlarmBase):
     pass
 
+class AlarmResponse(AlarmBase):
+    id: str
+    pass
 
 class AlarmInDB(AlarmBase):
     class Config:

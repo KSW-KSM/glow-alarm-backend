@@ -16,6 +16,9 @@ class LocationCreate(LocationBase):
 class LocationUpdate(LocationBase):
     pass
 
+class LocationResponse(LocationBase):
+    id: str
+    pass
 
 class LocationInDB(LocationBase):
     class Config:
