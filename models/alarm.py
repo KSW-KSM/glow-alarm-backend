@@ -1,4 +1,5 @@
 import enum
+import uuid
 
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
@@ -11,7 +12,7 @@ class LightColor(str, enum.Enum):
 class Alarm(Base, TimeStampedModel):
     __tablename__ = "alarm"
 
-    id = Column(String(20), primary_key=True, index=True)
+    id = Column(String(20), primary_key=True, index=True, default=str(uuid.uuid4()))
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
     repeat_day = Column(String(50))
     light_color= Column(Enum(LightColor),  default = LightColor.RED)
