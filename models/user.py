@@ -16,4 +16,5 @@ class User(Base, TimeStampedModel):
     bulb_ip = Column(String(20))
     location_id = Column(String(255), ForeignKey('location.id'))
 
+    location = relationship("Location", back_populates="location")
     alarms = relationship("Alarm", back_populates="users")
