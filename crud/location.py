@@ -5,8 +5,8 @@ from models.location import Location
 
 class CRUDLocation:
     @staticmethod
-    def insert(db: Session, *, id: str, location_code: int, location_name: str):
-        location = Location(id=id, location_code=location_code, location_name=location_name)
+    def insert(db: Session, *, location_code: int, location_name: str):
+        location = Location(location_code=location_code, location_name=location_name)
         try:
             db.add(location)
             db.commit()
