@@ -10,6 +10,6 @@ class Location(Base, TimeStampedModel):
     id = Column(String(255), primary_key=True, index=True, default=str(uuid.uuid4()))
     location_code = Column(String(40), nullable=False)
     location_name = Column(String(20), nullable=False)
-    
-    user = relationship("User", back_populates="location")
-    disaster = relationship("Disaster", back_populates="location")
+
+    users = relationship("User", back_populates="location")
+    disasters = relationship("Disaster", back_populates="location")
