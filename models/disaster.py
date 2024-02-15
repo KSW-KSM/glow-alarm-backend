@@ -12,5 +12,6 @@ class Disaster(Base, TimeStampedModel):
     disaster_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
     disaster_level = Column(String(20), nullable=False)
     disaster_message = Column(String(20), nullable=False)
+
     location_id = Column(String(255), ForeignKey('location.id'))
-    location = relationship("Location", back_populates="disaster")
+    location = relationship("Location", back_populates="disasters")
