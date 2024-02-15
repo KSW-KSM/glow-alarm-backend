@@ -25,6 +25,10 @@ class CRUDUser:
     @staticmethod
     def get_all(db: Session):
         return db.query(User).all()
+    
+    @staticmethod
+    def get_by_google_id(db: Session, google_id: str):
+        return db.query(User).filter(User.google_id == google_id).first()
 
     @staticmethod
     def update(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
