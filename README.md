@@ -5,11 +5,12 @@
   <img src="https://github.com/sound-light/Glow-Alarm/assets/131771046/4e50fc5b-7b55-4e1a-9c71-31fbaedeb1bd">
 </p>
 
+##Project Overview
+In the event of a fire, evacuation alerts are issued but rely solely on sound, becoming ineffectual for those with deaf and hard of hearing, highlighting a critical social inequality. Neuroplasticity suggests that individuals with hearing loss often have enhanced visual capabilities, making visual alarms a preferred method for alerts, as indicated by research in the *Fire Technology journal's* "Alarm Technologies to Wake Sleeping People Who are Deaf or Hard of Hearing (2022)." This underscores the necessity for a visual warning system.
 
 
+Addressing this need, we developed Glow Alarm, a system providing visual alerts through lights and flashes, aiding those with hearing impairments in recognizing emergency situations promptly. This system utilizes red lights and flashing effects for alerts, seamlessly integrating with current auditory alert systems to ensure quick responses during emergencies, playing a vital role in life-saving situations.
 
-
-이 어플은 재난 상황에 소리가 들리지 않는 청각 장애인들이 위험을 인지하고 대피할 수 있도록 돕습니다. 아래는 Glow Alarm의 주요 기능과 개요입니다.
 
 ## 주요 기능
 
@@ -41,6 +42,14 @@ Glow Alarm은 다음과 같은 기술 스택을 사용합니다:
 - There are no separate settings! Glow Alarm analyzes disaster messages with AI to determine their importance.
 - For disasters requiring immediate evacuation, the red light will wake you up.
 - For less urgent disasters that still require your attention, the blue light will wake you up.
+
+
+
+## Expectation Effects
+
+1. Deaf and hard of hearing will become safer in disaster situations since they can swiftly respond to emergencies through visual alerts, facilitating smoother prevention and response during accidents.
+2. Improve the quality of daily life for deaf and HoH as they can receive various alerts more effectively, not only in disaster situations but also in everyday life, helping boost their confidence and independence.
+3.  Enhance social inclusivity by ensuring that all individuals have equal access to information and opportunities to respond in disaster situations, thereby contributing to reducing social inequality among community members.
 
 
 ## Team Members
