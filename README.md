@@ -33,10 +33,11 @@ Glow Alarm은 다음과 같은 기술 스택을 사용합니다:
 1. Install the Glow Alarm.
 2. Prepare the Yeelight smart bulb.
 3. Press the icon located in the top right corner of the home screen to check if it is connected to the Yeelight smart bulb.
-4-1. Personalized Alarm:
+4. Personalized Alarm:
 - Press the + icon on the home screen to set the time you want to wake up.
 - You can set the desired color of the bulb.
-4-2. Disaster Alarm:
+  
+5. Disaster Alarm:
 - There are no separate settings! Glow Alarm analyzes disaster messages with AI to determine their importance.
 - For disasters requiring immediate evacuation, the red light will wake you up.
 - For less urgent disasters that still require your attention, the blue light will wake you up.
