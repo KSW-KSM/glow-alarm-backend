@@ -9,13 +9,13 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="allow")
     model_config['BACKEND_CORS_ORIGINS'] = []
 
-    @validator('model_config.BACKEND_CORS_ORIGINS', pre=True)
-    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
-        if isinstance(v, str) and not v.startswith('['):
-            return [i.strip() for i in v.split(',')]
-        elif isinstance(v, (list, str)):
-            return v
-        raise ValueError(v)
+    # @validator('model_config.BACKEND_CORS_ORIGINS', pre=True)
+    # def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
+    #     if isinstance(v, str) and not v.startswith('['):
+    #         return [i.strip() for i in v.split(',')]
+    #     elif isinstance(v, (list, str)):
+    #         return v
+    #     raise ValueError(v)
 
     @validator('model_config.DATABASE_URL', pre=True)
     def assemble_database_url(cls, v, values):
