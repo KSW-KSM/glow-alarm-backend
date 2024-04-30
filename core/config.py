@@ -17,14 +17,14 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    @validator('model_config.DATABASE_URL', pre=True)
+    @validator('DATABASE_URL', pre=True)
     def assemble_database_url(cls, v, values):
         db_user = values.get('DB_USER')
         db_password = values.get('DB_PASSWORD')
         db_host = values.get('DB_HOST')
         db_port = values.get('DB_PORT')
         db_name = values.get('DB_NAME')
-        return model_config.DATABASE_URL
+        return DATABASE_URL
 
 
 settings = Settings()
