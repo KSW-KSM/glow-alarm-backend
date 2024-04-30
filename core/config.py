@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     #         return v
     #     raise ValueError(v)
 
-    @validator('model_config.DATABASE_URL', pre=True)
+    @validator('DATABASE_URL', pre=True)
     def assemble_database_url(cls, v, values):
         db_user = values.get('DB_USER')
         db_password = values.get('DB_PASSWORD')
