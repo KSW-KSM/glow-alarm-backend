@@ -79,4 +79,4 @@ async def startup_db_check():
 async def on_startup():
     logging.info("Trying DB connection before stating...")
     await startup_db_check()
-    logging.info(f"DB connected! (url: {settings.DATABASE_URL})")
+    logging.info(f"DB connected! (url: {settings.database_url})")
