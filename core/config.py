@@ -6,8 +6,8 @@ from sqlalchemy.engine import create_engine
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="allow")
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    model_config: SettingsConfigDict = SettingsConfigDict(env_file=".env", extra="allow")
+    model_config.BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
 
     @validator('model_config.BACKEND_CORS_ORIGINS', pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
@@ -17,7 +17,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    @validator('DATABASE_URL', pre=True)
+    @validator('model_config.DATABASE_URL', pre=True)
     def assemble_database_url(cls, v, values):
         db_user = values.get('DB_USER')
         db_password = values.get('DB_PASSWORD')
