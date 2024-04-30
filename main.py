@@ -14,9 +14,9 @@ import logging
 
 
 app = app = FastAPI(
-    title=settings.PROJECT_NAME,
-    description=settings.DESCRIPTION,
-    version=settings.API_VERSION
+    title=settings.project_name,
+    description=settings.description,
+    version=settings.api_version
 )
 
 app.include_router(api_router)
