@@ -7,7 +7,7 @@ from sqlalchemy.engine import create_engine
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="allow")
-    model_config.BACKEND_CORS_ORIGINS = [] 
+    model_config['BACKEND_CORS_ORIGINS'] = []
 
     @validator('model_config.BACKEND_CORS_ORIGINS', pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
