@@ -21,7 +21,7 @@ app = app = FastAPI(
 
 app.include_router(api_router)
 
-logging.config.dictConfig(LOGGING_CONFIG)
+
 logger = logging.getLogger("uvicorn")
 
 
