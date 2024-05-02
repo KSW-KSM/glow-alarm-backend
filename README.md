@@ -55,3 +55,5 @@ Addressing this need, we developed Glow Alarm, a system providing visual alerts 
   <b>브랜치 관리 전략 참고 문헌</b><br>
 - [우아한 형제들 기술 블로그](http://woowabros.github.io/experience/2017/10/30/baemin-mobile-git-branch-strategy.html)
 - [Bitbucket Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+
+테스트
