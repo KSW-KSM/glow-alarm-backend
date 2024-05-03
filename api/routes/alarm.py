@@ -12,7 +12,7 @@ router = APIRouter()
 @router.post("/alarm", response_model=AlarmResponse)
 def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_db)):
     try:
-        created_alarm = crud_alarm.insert(db=db, alarm_time=alarm.alarm_time,name=name, repeat_day=alarm.repeat_day, light_color=alarm.light_color, alarm_status=alarm.alarm_status, user_id=alarm.user_id)
+        created_alarm = crud_alarm.insert(db=db, alarm_time=alarm.alarm_time,name=alarm.name, repeat_day=alarm.repeat_day, light_color=alarm.light_color, alarm_status=alarm.alarm_status, user_id=alarm.user_id)
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"Alarm creation failed: {str(e)}")
 
@@ -41,7 +41,7 @@ def read_alarms(db: Session = Depends(get_db)):
 @router.put("/alarm/{id}", response_model=AlarmResponse)
 def update_alarm(id: str = Path(..., min_length=1), db: Session = Depends(get_db), alarm: AlarmUpdate = Body(...)):
     try:
-        updated_alarm = crud_alarm.update(db=db, id=id, alarm_time=alarm.alarm_time,name=name, repeat_day=alarm.repeat_day, light_color=alarm.light_color, alarm_status=alarm.alarm_status, user_id=alarm.user_id)
+        updated_alarm = crud_alarm.update(db=db, id=id, alarm_time=alarm.alarm_time,name=alarm.name, repeat_day=alarm.repeat_day, light_color=alarm.light_color, alarm_status=alarm.alarm_status, user_id=alarm.user_id)
     except:
         raise HTTPException(status_code=422, detail="Validation error")
     if not updated_alarm:
