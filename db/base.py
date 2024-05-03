@@ -7,7 +7,6 @@ from core.config import settings
 # Create the SQLAlchemy engine
 # engine = create_engine(f'mysql+pymysql://{settings.db_user}:{settings.db_password}@{settings.db_host}:{settings.db_port}/{settings.db_name}')
 engine = create_engine(f'{settings.db_url}')
-# engine = create_engine("mysql+pymysql://root:bw990825%21%40@34.23.250.149:3306/glow_alarm")
 
 # Create a session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
