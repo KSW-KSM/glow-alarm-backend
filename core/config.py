@@ -9,11 +9,11 @@ from sqlalchemy.engine import create_engine
 load_dotenv()
 
 class Settings(BaseSettings):
-    db_user = os.getenv("DB_USER")
-    db_password = os.getenv("DB_PASSWORD")
-    db_host = os.getenv("DB_HOST")
-    db_port = os.getenv("DB_PORT")
-    db_name = os.getenv("DB_NAME")
-    db_url = os.getenv("DATABASE_URL")
+    db_user: str = os.getenv("DB_USER")
+    db_password: str = os.getenv("DB_PASSWORD")
+    db_host: str = os.getenv("DB_HOST")
+    db_port: int = os.getenv("DB_PORT")
+    db_name: str = os.getenv("DB_NAME")
+    db_url: str = os.getenv("DATABASE_URL")
     
 settings = Settings()
