@@ -4,6 +4,7 @@ from datetime import datetime
 
 class AlarmBase(BaseModel):
     alarm_time: datetime
+    name: str
     repeat_day: list
     light_color: str
     alarm_status: bool

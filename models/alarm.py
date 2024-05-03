@@ -14,6 +14,7 @@ class Alarm(Base, TimeStampedModel):
 
     id = Column(String(255), primary_key=True, index=True, default=uuid.uuid4)
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
+    name = Column(String(255), nullable=True, default="알람")
     repeat_day = Column(String(50))
     light_color= Column(Enum(LightColor),  default = LightColor.RED)
     alarm_status = Column(Boolean,  default=False)
