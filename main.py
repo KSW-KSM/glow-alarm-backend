@@ -14,9 +14,9 @@ import logging
 
 
 app = app = FastAPI(
-    title=settings.project_name,
-    description=settings.description,
-    version=settings.api_version
+    title="Sound Light",
+    description="Sound Light의 API 문서입니다",
+    version="v2.0"
 )
 
 app.include_router(api_router)
@@ -79,4 +79,4 @@ async def startup_db_check():
 async def on_startup():
     logging.info("Trying DB connection before stating...")
     await startup_db_check()
-    logging.info(f"DB connected! (url: {settings.database_url})")
+    logging.info(f"DB connected!")
