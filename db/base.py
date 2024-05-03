@@ -5,8 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from core.config import settings
 
 # Create the SQLAlchemy engine
-# engine = create_engine(f'mysql+pymysql://{settings.db_user}:{settings.db_password}@{settings.db_host}:{settings.db_port}/{settings.db_name}')
-engine = create_engine("mysql+pymysql://root@bw990825:34.23.250.149:3306/glow_alarm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8")
+engine = create_engine(f'mysql+pymysql://{settings.db_user}:{settings.db_password}@{settings.db_host}:{settings.db_port}/{settings.db_name}')
 
 # Create a session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
