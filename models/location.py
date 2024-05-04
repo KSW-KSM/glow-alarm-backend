@@ -1,6 +1,6 @@
 from db.base import Base
 from models.columns.timestamp import TimeStampedModel
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 import uuid
 
