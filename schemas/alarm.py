@@ -5,7 +5,7 @@ from datetime import datetime
 class AlarmBase(BaseModel):
     alarm_time: datetime
     name: str
-    repeat_day: list
+    repeat_day: str
     light_color: str
     alarm_status: bool
     user_id: str

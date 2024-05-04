@@ -13,9 +13,9 @@ scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
     @staticmethod
-    def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
+    def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: str, light_color: str, alarm_status: bool, user_id: str):
         try:
-            alarm = Alarm(alarm_time=alarm_time, name=name, repeat_day=','.join(repeat_day), light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+            alarm = Alarm(alarm_time=alarm_time, name=name, repeat_day=repeat_day, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
             db.add(alarm)
             db.commit()
             db.refresh(alarm)
@@ -37,12 +37,11 @@ class CRUDAlarm:
         return db.query(Alarm).filter(Alarm.user_id == user_id).all()
 
     @staticmethod
-    def update(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
-        repeat_day_str = ','.join(repeat_day)
+    def update(db: Session, *, id: str, alarm_time: datetime, repeat_day: str, light_color: str, alarm_status: bool, user_id: str):
         updated_alarm = db.get(Alarm, id)
         if updated_alarm:
             updated_at = datetime.now()
-            db.query(Alarm).filter(Alarm.id == id).update({"alarm_time": alarm_time, "repeat_day": repeat_day_str, "light_color": light_color, "alarm_status": alarm_status, "user_id": user_id, "updated_at": updated_at})
+            db.query(Alarm).filter(Alarm.id == id).update({"alarm_time": alarm_time, "repeat_day": repeat_day, "light_color": light_color, "alarm_status": alarm_status, "user_id": user_id, "updated_at": updated_at})
             db.commit()
             db.refresh(updated_alarm)
 
