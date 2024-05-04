@@ -18,7 +18,7 @@ class UserUpdate(UserBase):
     pass
 
 class UserResponse(UserBase):
-    id: int
+    id: str
     pass
 
 class UserInDB(UserBase):

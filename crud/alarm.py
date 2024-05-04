@@ -9,26 +9,19 @@ from pytz import utc
 scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
-    @staticmethod
     def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
-        repeat_day_str = ','.join(repeat_day)
-        alarm = Alarm(alarm_time=alarm_time, name=name, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
-        # scheduler.add_job(
-        #     전구 켜는 함수,
-        #     'date',
-        #     run_date=alarm.alarm_time,
-        #     args=[alarm.user_id, f"Alarm: {alarm.id}"]
-        # )
-        # # APScheduler 시작
-        # scheduler.start()
-        try:
-            db.add(alarm)
-            db.commit()
-            db.refresh(alarm)
-        except IntegrityError:
-            db.rollback()
-            raise ValueError("Alarm with ID already exists.")
-        return alarm
+        while True:
+            try:
+                alarm_id = str(uuid.uuid4())
+                repeat_day_str = ','.join(repeat_day)
+                alarm = Alarm(id=alarm_id, alarm_time=alarm_time, name=name, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+                db.add(alarm)
+                db.commit()
+                db.refresh(alarm)
+                return alarm
+            except IntegrityError:
+                db.rollback()
+                continue
 
     @staticmethod
     def get(db: Session, id: int):

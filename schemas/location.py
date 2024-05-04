@@ -16,7 +16,7 @@ class LocationUpdate(LocationBase):
     pass
 
 class LocationResponse(LocationBase):
-    id: int
+    id: str
     pass
 
 class LocationInDB(LocationBase):

@@ -7,16 +7,18 @@ from datetime import datetime
 
 class CRUDUser:
     @staticmethod
-    def insert(db: Session, *,user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: int):
-        user = User(user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, location_id=location_id)
-        try:
-            db.add(user)
-            db.commit()
-            db.refresh(user)
-        except IntegrityError:
-            db.rollback()
-            raise ValueError("User with ID already exists.")
-        return user
+    def insert(db: Session, *, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: int):
+        while True:
+            try:
+                user_id = uuid.uuid4()
+                user = User(id=str(user_id), user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, location_id=location_id)
+                db.add(user)
+                db.commit()
+                db.refresh(user)
+                return user
+            except IntegrityError:
+                db.rollback()
+                continue
 
     @staticmethod
     def get(db: Session, id: int):

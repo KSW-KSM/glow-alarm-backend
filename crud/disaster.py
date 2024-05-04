@@ -6,7 +6,7 @@ from datetime import datetime
 
 class CRUDDisaster:
     @staticmethod
-    def insert(db: Session, *, id: int, disaster_time: datetime, disaster_level: str, disaster_message: str, location_id: int):
+    def insert(db: Session, *, id: str, disaster_time: datetime, disaster_level: str, disaster_message: str, location_id: int):
         disaster = Disaster(id=id, disaster_time=disaster_time, disaster_level=disaster_level, disaster_message=disaster_message, location_id=location_id)
         try:
             db.add(disaster)
