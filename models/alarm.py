@@ -12,11 +12,11 @@ class LightColor(str, enum.Enum):
 class Alarm(Base, TimeStampedModel):
     __tablename__ = "alarm"
 
-    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = Column(String(255), primary_key=True, default=lambda: str(uuid.uuid4()))
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
     name = Column(String(255), nullable=True, default="알람")
     repeat_day = Column(String(50))
     light_color= Column(Enum(LightColor),  default = LightColor.RED)
     alarm_status = Column(Boolean,  default=False)
-    user_id = Column(String(36), ForeignKey('user.id'))
+    user_id = Column(String(255), ForeignKey('user.id'))
     user = relationship("User", back_populates="alarms")
