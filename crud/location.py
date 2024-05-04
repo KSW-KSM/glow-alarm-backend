@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select, update, delete
 from models.location import Location
+import uuid
 
 class CRUDLocation:
     @staticmethod

@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select, update, delete
 from models.user import User
 from datetime import datetime
+import uuid
 
 
 class CRUDUser:
