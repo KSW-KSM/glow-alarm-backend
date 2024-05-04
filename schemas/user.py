@@ -6,7 +6,7 @@ class UserBase(BaseModel):
     google_id: str
     guardian_contact: str
     bulb_ip: str
-    location_id: int
+    location_id: str
 
 
 class UserCreate(UserBase):
