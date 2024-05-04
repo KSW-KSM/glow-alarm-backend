@@ -13,7 +13,7 @@ scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
     @staticmethod
-    def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
+    def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
         try:
             alarm = Alarm(alarm_time=alarm_time, name=name, repeat_day=','.join(repeat_day), light_color=light_color, alarm_status=alarm_status, user_id=user_id)
             db.add(alarm)
@@ -37,7 +37,7 @@ class CRUDAlarm:
         return db.query(Alarm).filter(Alarm.user_id == user_id).all()
 
     @staticmethod
-    def update(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
+    def update(db: Session, *, id: str, alarm_time: datetime, repeat_day: list, light_color: str, alarm_status: bool, user_id: str):
         repeat_day_str = ','.join(repeat_day)
         updated_alarm = db.get(Alarm, id)
         if updated_alarm:
