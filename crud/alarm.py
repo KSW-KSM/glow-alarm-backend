@@ -6,12 +6,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 from pytz import utc
 import uuid
+import time
+import random
 
 scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
+   @staticmethod
     def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
-        while True:
+        max_retries = 5
+        for retry in range(max_retries):
             try:
                 alarm_id = str(uuid.uuid4())
                 repeat_day_str = ','.join(repeat_day)
@@ -22,7 +26,9 @@ class CRUDAlarm:
                 return alarm
             except IntegrityError:
                 db.rollback()
-                continue
+                backoff = 2 ** retry + random.uniform(0, 1)  # 지수 백오프
+                time.sleep(backoff)
+        raise ValueError("Alarm with ID already exists after maximum retries.")
 
     @staticmethod
     def get(db: Session, id: str):
