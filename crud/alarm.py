@@ -12,7 +12,7 @@ import random
 scheduler = BackgroundScheduler(timezone=utc)
 
 class CRUDAlarm:
-   @staticmethod
+    @staticmethod
     def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
         max_retries = 5
         for retry in range(max_retries):
