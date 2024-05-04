@@ -15,16 +15,14 @@ class CRUDAlarm:
     @staticmethod
     def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
         try:
-            alarm_id = str(uuid.uuid4())
-            repeat_day_str = ','.join(repeat_day)
-            alarm = Alarm(id=alarm_id, alarm_time=alarm_time, name=name, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+            alarm = Alarm(alarm_time=alarm_time, name=name, repeat_day=','.join(repeat_day), light_color=light_color, alarm_status=alarm_status, user_id=user_id)
             db.add(alarm)
             db.commit()
             db.refresh(alarm)
             return alarm
-        except IntegrityError:
+        except IntegrityError as e:
             db.rollback()
-            raise ValueError("Alarm with ID already exists.")
+            raise ValueError(f"Alarm creation failed: {str(e)}")
 
     @staticmethod
     def get(db: Session, id: str):

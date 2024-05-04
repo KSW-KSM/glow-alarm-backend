@@ -11,15 +11,14 @@ class CRUDUser:
     @staticmethod
     def insert(db: Session, *, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: int):
         try:
-            user_id = str(uuid.uuid4())
-            user = User(id=user_id, user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, location_id=location_id)
+            user = User(user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, location_id=location_id)
             db.add(user)
             db.commit()
             db.refresh(user)
             return user
-        except IntegrityError:
+        except IntegrityError as e:
             db.rollback()
-            raise ValueError("User with ID already exists.")
+            raise ValueError(f"User creation failed: {str(e)}")
 
     @staticmethod
     def get(db: Session, id: str):
