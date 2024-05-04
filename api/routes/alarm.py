@@ -19,7 +19,7 @@ def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_db)):
     return JSONResponse(status_code=201, content=jsonable_encoder(created_alarm))
 
 @router.get("/alarm/{id}", response_model=AlarmResponse)
-def read_alarm(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_alarm(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     try:
         alarm = crud_alarm.get(db, id)
     except:
@@ -29,7 +29,7 @@ def read_alarm(id: int = Path(..., min_length=1), db: Session = Depends(get_db))
     return JSONResponse(status_code=200, content=jsonable_encoder(alarm))
 
 @router.get("/alarms/user/{user_id}", response_model=List[AlarmResponse])
-def read_alarms_by_user_id(user_id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_alarms_by_user_id(user_id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     alarms = crud_alarm.get_all_by_user_id(db, user_id)
     return JSONResponse(status_code=200, content=jsonable_encoder(alarms))
 
@@ -39,7 +39,7 @@ def read_alarms(db: Session = Depends(get_db)):
     return JSONResponse(status_code=200, content=jsonable_encoder(alarms))
 
 @router.put("/alarm/{id}", response_model=AlarmResponse)
-def update_alarm(id: int = Path(..., min_length=1), db: Session = Depends(get_db), alarm: AlarmUpdate = Body(...)):
+def update_alarm(id: str = Path(..., min_length=1), db: Session = Depends(get_db), alarm: AlarmUpdate = Body(...)):
     try:
         updated_alarm = crud_alarm.update(db=db, id=id, alarm_time=alarm.alarm_time,name=alarm.name, repeat_day=alarm.repeat_day, light_color=alarm.light_color, alarm_status=alarm.alarm_status, user_id=alarm.user_id)
     except:
@@ -49,7 +49,7 @@ def update_alarm(id: int = Path(..., min_length=1), db: Session = Depends(get_db
     return JSONResponse(status_code=200, content=jsonable_encoder(updated_alarm))
 
 @router.delete("/alarm/{id}", response_model=None)
-def delete_alarm(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def delete_alarm(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     deleted_alarm = crud_alarm.delete(db, id)
     if not deleted_alarm:
         raise HTTPException(status_code=404, detail="Alarm not found")

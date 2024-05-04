@@ -25,7 +25,7 @@ class CRUDAlarm:
                 continue
 
     @staticmethod
-    def get(db: Session, id: int):
+    def get(db: Session, id: str):
         return db.get(Alarm, id)
 
     @staticmethod
@@ -33,7 +33,7 @@ class CRUDAlarm:
         return db.query(Alarm).all()
     
     @staticmethod
-    def get_all_by_user_id(db: Session, user_id: int):
+    def get_all_by_user_id(db: Session, user_id: str):
         return db.query(Alarm).filter(Alarm.user_id == user_id).all()
 
     @staticmethod
@@ -49,7 +49,7 @@ class CRUDAlarm:
         return updated_alarm
 
     @staticmethod
-    def delete(db: Session, id: int):
+    def delete(db: Session, id: str):
         deleted_alarm = db.get(Alarm, id)
         if deleted_alarm:
             db.delete(deleted_alarm)

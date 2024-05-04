@@ -6,7 +6,7 @@ import uuid
 
 class CRUDLocation:
     @staticmethod
-    def insert(db: Session, *, location_code: int, location_name: str):
+    def insert(db: Session, *, location_code: str, location_name: str):
         location = Location(location_code=location_code, location_name=location_name)
         try:
             db.add(location)
@@ -18,7 +18,7 @@ class CRUDLocation:
         return location
 
     @staticmethod
-    def get(db: Session, id: int):
+    def get(db: Session, id: str):
         return db.get(Location, id)
 
     @staticmethod
@@ -26,7 +26,7 @@ class CRUDLocation:
         return db.query(Location).all()
 
     @staticmethod
-    def update(db: Session, *, id: int, location_code: int, location_name: str):
+    def update(db: Session, *, id: str, location_code: int, location_name: str):
         updated_location = db.get(Location, id)
         if updated_location:
             db.query(Location).filter(Location.id == id).update({"location_code": location_code, "location_name": location_name})
@@ -36,7 +36,7 @@ class CRUDLocation:
         return updated_location
 
     @staticmethod
-    def delete(db: Session, id: int):
+    def delete(db: Session, id: str):
         deleted_location = db.get(Location, id)
         if deleted_location:
             db.delete(deleted_location)

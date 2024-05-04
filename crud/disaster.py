@@ -18,7 +18,7 @@ class CRUDDisaster:
         return disaster
 
     @staticmethod
-    def get(db: Session, id: int):
+    def get(db: Session, id: str):
         return db.get(Disaster, id)
 
     @staticmethod
@@ -26,11 +26,11 @@ class CRUDDisaster:
         return db.query(Disaster).all()
     
     @staticmethod
-    def get_all_by_location_id(db: Session, location_id: int):
+    def get_all_by_location_id(db: Session, location_id: str):
         return db.query(Disaster).filter(Disaster.location_id == location_id).all()
 
     @staticmethod
-    def update(db: Session, *, id: int, disaster_time: datetime, disaster_level: str, disaster_message: str, location_id: int):
+    def update(db: Session, *, id: str, disaster_time: datetime, disaster_level: str, disaster_message: str, location_id: int):
         updated_disaster = db.get(Disaster, id)
         if updated_disaster:
             updated_at = datetime.now()
@@ -41,7 +41,7 @@ class CRUDDisaster:
         return updated_disaster
 
     @staticmethod
-    def delete(db: Session, id: int):
+    def delete(db: Session, id: str):
         deleted_disaster = db.get(Disaster, id)
         if deleted_disaster:
             db.delete(deleted_disaster)

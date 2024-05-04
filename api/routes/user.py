@@ -20,7 +20,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return JSONResponse(status_code=201, content=jsonable_encoder(created_user))
 
 @router.get("/user/{id}", response_model=UserResponse)
-def read_user(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     try:
         user = crud_user.get(db, id)
     except:
@@ -46,7 +46,7 @@ def read_user_by_google_id(google_id: str = Path(..., min_length=1), db: Session
 
 
 @router.put("/user/{id}", response_model=UserResponse)
-def update_user(id: int = Path(..., min_length=1), db: Session = Depends(get_db),
+def update_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db),
                  user: UserUpdate = Body(...)):
     try:
         updated_user = crud_user.update(db=db, id=id, user_name=user.user_name, google_id=user.google_id, guardian_contact=user.guardian_contact, bulb_connection=user.bulb_connection, bulb_ip=user.bulb_ip)
@@ -57,7 +57,7 @@ def update_user(id: int = Path(..., min_length=1), db: Session = Depends(get_db)
     return JSONResponse(status_code=200, content=jsonable_encoder(updated_user))
 
 @router.delete("/user/{id}", response_model=None)
-def delete_user(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def delete_user(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     deleted_user = crud_user.delete(db, id)
     if not deleted_user:
         raise HTTPException(status_code=404, detail="User not found")

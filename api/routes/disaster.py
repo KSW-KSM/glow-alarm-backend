@@ -19,7 +19,7 @@ def create_disaster(disaster: DisasterCreate, db: Session = Depends(get_db)):
     return JSONResponse(status_code=201, content=jsonable_encoder(created_disaster))
 
 @router.get("/disaster/{id}", response_model=DisasterResponse)
-def read_disaster(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_disaster(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     try:
         disaster = crud_disaster.get(db, id)
     except:
@@ -29,7 +29,7 @@ def read_disaster(id: int = Path(..., min_length=1), db: Session = Depends(get_d
     return JSONResponse(status_code=200, content=jsonable_encoder(disaster))
 
 @router.get("/disasters/location/{location_id}", response_model=List[DisasterResponse])
-def read_disasters_by_location_id(location_id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_disasters_by_location_id(location_id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     disasters = crud_disaster.get_all_by_location_id(db, location_id)
     return JSONResponse(status_code=200, content=jsonable_encoder(disasters))
 
@@ -39,7 +39,7 @@ def read_disasters(db: Session = Depends(get_db)):
     return JSONResponse(status_code=200, content=jsonable_encoder(disasters))
 
 @router.put("/disaster/{id}", response_model=DisasterResponse)
-def update_disaster(id: int = Path(..., min_length=1), db: Session = Depends(get_db),
+def update_disaster(id: str = Path(..., min_length=1), db: Session = Depends(get_db),
                  disaster: DisasterUpdate = Body(...)):
     try:
         updated_disaster = crud_disaster.update(db=db, id=id, disaster_time=disaster.disaster_time, disaster_level=disaster.disaster_level, disaster_message=disaster.disaster_message, location_id=disaster.location_id)
@@ -50,7 +50,7 @@ def update_disaster(id: int = Path(..., min_length=1), db: Session = Depends(get
     return JSONResponse(status_code=200, content=jsonable_encoder(updated_disaster))
 
 @router.delete("/disaster/{id}", response_model=None)
-def delete_disaster(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
+def delete_disaster(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
     deleted_disaster = crud_disaster.delete(db, id)
     if not deleted_disaster:
         raise HTTPException(status_code=404, detail="Disaster not found")

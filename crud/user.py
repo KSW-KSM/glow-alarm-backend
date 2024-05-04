@@ -8,7 +8,7 @@ import uuid
 
 class CRUDUser:
     @staticmethod
-    def insert(db: Session, *, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: int):
+    def insert(db: Session, *, user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: str):
         while True:
             try:
                 user_id = uuid.uuid4()
@@ -22,7 +22,7 @@ class CRUDUser:
                 continue
 
     @staticmethod
-    def get(db: Session, id: int):
+    def get(db: Session, id: str):
         return db.get(User, id)
 
     @staticmethod
@@ -34,7 +34,7 @@ class CRUDUser:
         return db.query(User).filter(User.google_id == google_id).first()
 
     @staticmethod
-    def update(db: Session, *, id: int, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
+    def update(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
         # Update the user
         updated_user = db.get(User, id)
         if updated_user:
@@ -46,7 +46,7 @@ class CRUDUser:
         return updated_user
 
     @staticmethod
-    def delete(db: Session, id: int):
+    def delete(db: Session, id: str):
         deleted_user = db.get(User, id)
         if deleted_user:
             db.delete(deleted_user)
