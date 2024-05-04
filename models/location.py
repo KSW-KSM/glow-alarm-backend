@@ -7,7 +7,7 @@ import uuid
 class Location(Base, TimeStampedModel):
     __tablename__ = "location"
 
-    id = Column(String(255), primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     location_code = Column(String(40), nullable=False)
     location_name = Column(String(20), nullable=False)
 
