@@ -8,7 +8,7 @@ class AlarmBase(BaseModel):
     repeat_day: list
     light_color: str
     alarm_status: bool
-    user_id: str
+    user_id: int
 
 
 class AlarmCreate(AlarmBase):
@@ -19,7 +19,7 @@ class AlarmUpdate(AlarmBase):
     pass
 
 class AlarmResponse(AlarmBase):
-    id: str
+    id: int
     pass
 
 class AlarmInDB(AlarmBase):

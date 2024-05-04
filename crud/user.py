@@ -7,7 +7,7 @@ from datetime import datetime
 
 class CRUDUser:
     @staticmethod
-    def insert(db: Session, *,user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: str):
+    def insert(db: Session, *,user_name: str, google_id: str, guardian_contact: str, bulb_ip: str, location_id: int):
         user = User(user_name=user_name, google_id=google_id, guardian_contact=guardian_contact, bulb_ip=bulb_ip, location_id=location_id)
         try:
             db.add(user)
@@ -19,7 +19,7 @@ class CRUDUser:
         return user
 
     @staticmethod
-    def get(db: Session, id: str):
+    def get(db: Session, id: int):
         return db.get(User, id)
 
     @staticmethod
@@ -31,7 +31,7 @@ class CRUDUser:
         return db.query(User).filter(User.google_id == google_id).first()
 
     @staticmethod
-    def update(db: Session, *, id: str, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
+    def update(db: Session, *, id: int, user_name: str, google_id: str, guardian_contact: str, bulb_connection: bool, bulb_ip: str):
         # Update the user
         updated_user = db.get(User, id)
         if updated_user:
@@ -43,7 +43,7 @@ class CRUDUser:
         return updated_user
 
     @staticmethod
-    def delete(db: Session, id: str):
+    def delete(db: Session, id: int):
         deleted_user = db.get(User, id)
         if deleted_user:
             db.delete(deleted_user)

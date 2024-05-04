@@ -17,7 +17,7 @@ class CRUDLocation:
         return location
 
     @staticmethod
-    def get(db: Session, id: str):
+    def get(db: Session, id: int):
         return db.get(Location, id)
 
     @staticmethod
@@ -25,7 +25,7 @@ class CRUDLocation:
         return db.query(Location).all()
 
     @staticmethod
-    def update(db: Session, *, id: str, location_code: int, location_name: str):
+    def update(db: Session, *, id: int, location_code: int, location_name: str):
         updated_location = db.get(Location, id)
         if updated_location:
             db.query(Location).filter(Location.id == id).update({"location_code": location_code, "location_name": location_name})
@@ -35,7 +35,7 @@ class CRUDLocation:
         return updated_location
 
     @staticmethod
-    def delete(db: Session, id: str):
+    def delete(db: Session, id: int):
         deleted_location = db.get(Location, id)
         if deleted_location:
             db.delete(deleted_location)

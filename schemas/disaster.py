@@ -6,7 +6,7 @@ class DisasterBase(BaseModel):
     disaster_time: datetime
     disaster_level: str
     disaster_message: str
-    location_id: str
+    location_id: int
 
 class DisasterCreate(DisasterBase):
     pass
@@ -16,7 +16,7 @@ class DisasterUpdate(DisasterBase):
     pass
 
 class DisasterResponse(DisasterBase):
-    id: str
+    id: int
     pass
 
 class DisasterInDB(DisasterBase):

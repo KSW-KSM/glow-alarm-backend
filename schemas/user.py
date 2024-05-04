@@ -6,7 +6,7 @@ class UserBase(BaseModel):
     google_id: str
     guardian_contact: str
     bulb_ip: str
-    location_id: str
+    location_id: int
 
 
 class UserCreate(UserBase):
@@ -18,7 +18,7 @@ class UserUpdate(UserBase):
     pass
 
 class UserResponse(UserBase):
-    id: str
+    id: int
     pass
 
 class UserInDB(UserBase):

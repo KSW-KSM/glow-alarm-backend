@@ -20,7 +20,7 @@ def create_locaiton(location: LocationCreate, db: Session = Depends(get_db)):
     return JSONResponse(status_code=201, content=jsonable_encoder(created_location))
 
 @router.get("/location/{id}", response_model=LocationResponse)
-def read_location(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
+def read_location(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
     try:
         location = crud_location.get(db, id)
     except:
@@ -35,7 +35,7 @@ def read_locations(db: Session = Depends(get_db)):
     return JSONResponse(status_code=200, content=jsonable_encoder(locations))
 
 @router.put("/location/{id}", response_model=LocationResponse)
-def update_location(id: str = Path(..., min_length=1), db: Session = Depends(get_db),
+def update_location(id: int = Path(..., min_length=1), db: Session = Depends(get_db),
                  location: LocationUpdate = Body(...)):
     try:
         updated_location = crud_location.update(db=db, id=id, location_code=location.location_code, location_name=location.location_name)
@@ -46,7 +46,7 @@ def update_location(id: str = Path(..., min_length=1), db: Session = Depends(get
     return JSONResponse(status_code=200, content=jsonable_encoder(updated_location))
 
 @router.delete("/location/{id}", response_model=None)
-def delete_location(id: str = Path(..., min_length=1), db: Session = Depends(get_db)):
+def delete_location(id: int = Path(..., min_length=1), db: Session = Depends(get_db)):
     deleted_location = crud_location.delete(db, id)
     if not deleted_location:
         raise HTTPException(status_code=404, detail="Location not found")
