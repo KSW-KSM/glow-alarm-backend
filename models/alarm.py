@@ -12,7 +12,7 @@ class LightColor(str, enum.Enum):
 class Alarm(Base, TimeStampedModel):
     __tablename__ = "alarm"
 
-    id = Column(String(255), primary_key=True, index=True, default=uuid.uuid4)
+    id = Column(String(255), primary_key=True, autoincrement=True)
     alarm_time = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
     name = Column(String(255), nullable=True, default="알람")
     repeat_day = Column(String(50))

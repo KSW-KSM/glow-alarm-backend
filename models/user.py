@@ -8,7 +8,7 @@ import uuid
 class User(Base, TimeStampedModel):
     __tablename__ = "user"
 
-    id = Column(String(255), primary_key=True, index=True, default=uuid.uuid4)
+    id = Column(String(255), primary_key=True, autoincrement=True)
     user_name = Column(String(20), nullable=False)
     google_id = Column(String(20), nullable=False)
     guardian_contact = Column(String(20), nullable=False)
