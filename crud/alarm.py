@@ -14,21 +14,17 @@ scheduler = BackgroundScheduler(timezone=utc)
 class CRUDAlarm:
     @staticmethod
     def insert(db: Session, *, alarm_time: datetime, name: str, repeat_day: list, light_color: str, alarm_status: bool, user_id: int):
-        max_retries = 5
-        for retry in range(max_retries):
-            try:
-                alarm_id = str(uuid.uuid4())
-                repeat_day_str = ','.join(repeat_day)
-                alarm = Alarm(id=alarm_id, alarm_time=alarm_time, name=name, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
-                db.add(alarm)
-                db.commit()
-                db.refresh(alarm)
-                return alarm
-            except IntegrityError:
-                db.rollback()
-                backoff = 2 ** retry + random.uniform(0, 1)  # 지수 백오프
-                time.sleep(backoff)
-        raise ValueError("Alarm with ID already exists after maximum retries.")
+        try:
+            alarm_id = str(uuid.uuid4())
+            repeat_day_str = ','.join(repeat_day)
+            alarm = Alarm(id=alarm_id, alarm_time=alarm_time, name=name, repeat_day=repeat_day_str, light_color=light_color, alarm_status=alarm_status, user_id=user_id)
+            db.add(alarm)
+            db.commit()
+            db.refresh(alarm)
+            return alarm
+        except IntegrityError:
+            db.rollback()
+            raise ValueError("Alarm with ID already exists.")
 
     @staticmethod
     def get(db: Session, id: str):
