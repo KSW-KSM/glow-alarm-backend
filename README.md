@@ -56,4 +56,13 @@ Addressing this need, we developed Glow Alarm, a system providing visual alerts 
 - [우아한 형제들 기술 블로그](http://woowabros.github.io/experience/2017/10/30/baemin-mobile-git-branch-strategy.html)
 - [Bitbucket Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-test 8
+## How to run
+- build a container with docker
+```
+docker build -t glow-alarm-app .
+```
+
+- run container in local
+```
+docker run -p 8080:8080 glow-alarm-app
+```
