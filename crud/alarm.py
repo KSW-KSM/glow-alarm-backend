@@ -55,6 +55,17 @@ class CRUDAlarm:
             db.commit()
         return deleted_alarm
 
+    @staticmethod
+    def turn_off_alarm(db: Session, id: str):
+        alarm = db.get(Alarm, id)
+        if alarm:
+            alarm.alarm_status = False
+            alarm.updated_at = datetime.now()
+            db.commit()
+            db.refresh(alarm)
+            return alarm
+        return None
+
 
 
 # 싱글톤 객체 생성
