@@ -1,4 +1,4 @@
-# 청각 장애인을 위한 시각 알람, Glow Alarm 💡
+# 청각 장애인을 위한 시각 알람, Glow Alarm 💡 
 스마트 전구를 이용한 시각 알람 어플리케이션
 
 <p align="center">
