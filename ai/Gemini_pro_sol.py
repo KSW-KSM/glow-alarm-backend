@@ -1,4 +1,4 @@
-import textwrap
+
 
 import google.generativeai as genai
 
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 
 """
+import textwrap
 from IPython.display import display
 from IPython.display import Markdown
 
